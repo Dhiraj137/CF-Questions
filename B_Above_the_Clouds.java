@@ -1,31 +1,32 @@
 import java.util.Scanner;
 public class B_Above_the_Clouds{
-    public static void main(String[] args) {
+    public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
+        sc.nextLine();
+
         while(t-- > 0){
             int n = sc.nextInt();
-            String s = sc.next();
-            String b = s.substring(1,n-1);
-            String a_c = s.substring(0,1)+s.substring(n-1);
+            sc.nextLine();
+            String str = sc.nextLine();
 
-            if(n == 3){
-                if(a_c.contains(b))
-                    System.out.println("YES");
-                else
-                    System.out.println("NO");
-            }else{
-                for(int i = 0; i < b.length(); i++){
-                    for(int j = i+1; j < b.length(); j++){
-                        if(b.charAt(i) == b.charAt(j)){
-                            System.out.println("Yes");
-                            break;
-                        }
-                    }
+            StringBuffer a = new StringBuffer("" + str.charAt(0));
+            StringBuffer b = new StringBuffer("" + str.charAt(n-1));
+
+            boolean flag = true;
+            for(int i = 1; i < n-1; i++){
+                if(a.indexOf("" + str.charAt(i)) != -1 || b.indexOf("" + str.charAt(i)) != -1){
+                    System.out.println("Yes");
+                    flag = false;
+                    break;
+                }else{
+                    a.append(str.charAt(i));
                 }
-                System.out.println("NO");
             }
 
+            if(flag){
+                System.out.println("No");
+            }
         }
     }
 }
